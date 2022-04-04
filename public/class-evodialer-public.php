@@ -100,5 +100,4 @@ class Evodialer_Public {
 
 	}
 
-
 }

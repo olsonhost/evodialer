@@ -112,5 +112,4 @@ class Evodialer_Admin {
 		);
 	}
 
-
 }
