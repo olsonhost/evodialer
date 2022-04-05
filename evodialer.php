@@ -1,5 +1,7 @@
 <?php
 
+include(plugin_dir_path( __FILE__ ) . 'ect/src/Twilio.php');
+
 /**
  * The plugin bootstrap file
  *
@@ -85,7 +87,7 @@ function evodialer_options_page_html() {
 	?>
 	<div class="wrap">
 		<h1>EVODIALER</h1>
-		aaaaaaaaaaaaaaaaaaaaa
+		aaaaaaaaaaaaaaaaaaaaax
 	</div>
 	<?php
 }
@@ -93,12 +95,14 @@ function evodialer_options_page_html() {
 function evodialer_endpoint ( WP_REST_Request $request) {
 	return "Foo!";
 }
+
 function evodialer_sms() {
+
 	header('Content-type:  application/xml; charset=UTF-8');
 	exit ('<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Message>
-        I am not programmed to respond in that area.
+        I (' . $tel->author . ') am not programmed to respond in that area.
     </Message>
 </Response>');
 }
@@ -106,9 +110,18 @@ function evodialer_sms() {
 function evodialer_status() {
 	return true;
 }
-
+//https://productivity.godaddy.com/?isc=&orderId=2080959595#
 function evodialer_voice() {
-	header('Content-type:  application/xml; charset=UTF-8');
+
+    $tel = new Olsonhost\Ect\Twilio();
+
+    $to = 'the caller';
+    $from = 'the site phone';
+    $msg = 'boobies';
+
+    $tel->sendSMS($to, $from, $msg);
+
+    header('Content-type:  application/xml; charset=UTF-8');
 	exit ('<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say>
